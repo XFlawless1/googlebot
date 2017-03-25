@@ -13,7 +13,7 @@ module.exports = {
       **• Channels:** ${client.channels.size.toLocaleString()}
       **• Guilds:** ${client.guilds.size.toLocaleString()}
       **• Library:** Discord.js v${require('discord.js').version}
-      **• Shard:** ${Number(message.guild.shardID) + 1}/${client.ws.shardCount}
+      **• Shard:** ${Number(message.guild.shard.id) + 1}/${client.ws.shardCount}
 
       ${presencePercent}% of ${eventCounter.total.toLocaleString()} total events are presence updates.
     `);

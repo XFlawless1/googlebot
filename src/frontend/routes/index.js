@@ -1,6 +1,6 @@
 const express = require('express');
 const router = new express.Router();
-const superagent = require('superagent');
+const snekfetch = require('snekfetch');
 const entities = new require('html-entities').XmlEntities; // eslint-disable-line
 const marked = require('marked');
 
@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/compliance', (req, res) => {
-  superagent.get('https://raw.githubusercontent.com/Roadcrosser/Compliance/master/enduser.md')
+  snekfetch.get('https://raw.githubusercontent.com/Roadcrosser/Compliance/master/enduser.md')
     .then((compliance) => {
       res.locals.compliance = marked(compliance.text.replace('**- for end users**\n', '').replace(/\+a/g, '@Google search'));
       res.render('compliance');

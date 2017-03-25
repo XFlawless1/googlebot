@@ -1,9 +1,9 @@
-const superagent = require('superagent');
+const snekfetch = require('snekfetch');
 const cheerio = require('cheerio');
 
 module.exports = {
   main: (message) => {
-    superagent.get(`https://httpstatuses.com/${message.content}`)
+    snekfetch.get(`https://httpstatuses.com/${message.content}`)
       .then((res) => cheerio.load(res.text))
       .then(($) => {
         const container = $('.code.container')[0];

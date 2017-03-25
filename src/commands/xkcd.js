@@ -1,16 +1,16 @@
-const superagent = require('superagent');
+const snekfetch = require('snekfetch');
 
 module.exports = {
   main: message => {
     const comicnum = parseInt(message.content);
-    let request = superagent.get(`https://xkcd.com/${comicnum}/info.0.json`);
+    let request = snekfetch.get(`https://xkcd.com/${comicnum}/info.0.json`);
     if (isNaN(comicnum)) {
       if (message.content === 'latest') {
-        request = superagent.get('https://xkcd.com/info.0.json');
+        request = snekfetch.get('https://xkcd.com/info.0.json');
       } else {
-        request = superagent.get(`https://relevantxkcd.appspot.com/process?action=xkcd&query=${message.content}`)
+        request = snekfetch.get(`https://relevantxkcd.appspot.com/process?action=xkcd&query=${message.content}`)
           .then((res) => res.text.split(' ')[2].replace('\n', ''))
-          .then((num) => superagent.get(`https://xkcd.com/${num}/info.0.json`));
+          .then((num) => snekfetch.get(`https://xkcd.com/${num}/info.0.json`));
       }
     }
     request.then((res) => res.body)

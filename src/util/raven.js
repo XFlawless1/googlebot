@@ -1,7 +1,7 @@
 const raven = require('raven');
 
 function sendRavenFeedback(eventID, DSN, body) {
-  const superagent = require('superagent');
+  const snekfetch = require('snekfetch');
   function getGlobalServer(uri) {
     let globalServer = `//${uri.host}${uri.port ? `:${uri.port}` : ''}`;
     if (uri.protocol) globalServer = `${uri.protocol}:${globalServer}`;
@@ -25,7 +25,7 @@ function sendRavenFeedback(eventID, DSN, body) {
   const globalServer = getGlobalServer(parseDSN(DSN));
   const path = `/api/embed/error-page/?eventId=${encodeURIComponent(eventID)}&dsn=${encodeURIComponent(DSN)}`;
   const URL = `${globalServer}${path}`;
-  return superagent.post(URL)
+  return snekfetch.post(URL)
     .type('form')
     .send(body);
 }

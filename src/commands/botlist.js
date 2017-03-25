@@ -1,9 +1,9 @@
-const superagent = require('superagent');
+const snekfetch = require('snekfetch');
 
 module.exports = {
   main: (message) => {
     const { left, right } = message.client.util.pad;
-    superagent.get('https://www.carbonitex.net/discord/api/listedbots')
+    snekfetch.get('https://www.carbonitex.net/discord/api/listedbots')
       .then((res) => res.body
         .sort((a, b) => b.servercount - a.servercount)
         .filter(b => b.servercount !== '0' && b.botid > 10)

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = new express.Router();
 const config = require('../../../config.json');
-const superagent = require('superagent');
+const snekfetch = require('snekfetch');
 const querystring = require('querystring');
 
 router.get('/', (req, res) => {
@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/callback', (req, res) => {
-  superagent.get(`https://discordapp.com/api/guilds/${req.query.guild_id}`)
+  snekfetch.get(`https://discordapp.com/api/guilds/${req.query.guild_id}`)
     .set({ Authorization: `Bot ${config.discord.TOKENS[config.env]}` })
     .then((response) => response.body)
     .then((guild) => res.render('invite', { guild }))

@@ -24,9 +24,9 @@
     "moment": "^2.15.1",
     "raven": "^1.1.1",
     "sherlockjs": "0.0.9",
+    "snekfetch": "github:guscaplan/snekfetch",
     "snekparse": "github:guscaplan/snekparse",
     "sse": "github:guscaplan/sse.js",
-    "superagent": "^3.3.1",
     "tagmanager": "github:guscaplan/tagmanager",
     "vm2": "^3.2.0"
   }

@@ -1,10 +1,10 @@
-const superagent = require('superagent');
+const snekfetch = require('snekfetch');
 
 module.exports = {
   main: (message) => {
     message.channel.send('**Searching...**')
       .then((msg) => {
-        superagent.get(
+        snekfetch.get(
           `https://en.wikipedia.org/w/api.php?action=query&list=search&srwhat=text&srprop=sectionsnippet&format=json&srsearch=${message.content}`
         )
         .then((res) => res.body.query.search)
@@ -12,7 +12,7 @@ module.exports = {
           if (!results[0]) return Promise.reject('NO RESULTS');
           return results[0];
         })
-        .then((result) => superagent.get(
+        .then((result) => snekfetch.get(
           `https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=${encodeURIComponent(result.title)}`
         ))
         .then((res) => res.body.query.pages[Object.keys(res.body.query.pages)])

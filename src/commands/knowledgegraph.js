@@ -1,4 +1,4 @@
-const superagent = require('superagent');
+const snekfetch = require('snekfetch');
 const querystring = require('querystring');
 
 module.exports = {
@@ -18,7 +18,7 @@ module.exports = {
       query,
     };
     const msg = await message.channel.send('**Searching...**');
-    return superagent.get(`https://kgsearch.googleapis.com/v1/entities:search?${querystring.stringify(QUERY_PARAMS)}`)
+    return snekfetch.get(`https://kgsearch.googleapis.com/v1/entities:search?${querystring.stringify(QUERY_PARAMS)}`)
       .then((res) => {
         let result = res.body.itemListElement[0];
         if (!result || !result.result || !result.result.detailedDescription) return Promise.reject('NO RESULT');
