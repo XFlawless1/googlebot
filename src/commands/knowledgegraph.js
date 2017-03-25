@@ -20,6 +20,7 @@ module.exports = {
     const msg = await message.channel.send('**Searching...**');
     return snekfetch.get(`https://kgsearch.googleapis.com/v1/entities:search?${querystring.stringify(QUERY_PARAMS)}`)
       .then((res) => {
+        if (!res.body.itemList) return Promise.reject('NO RESULT');
         let result = res.body.itemListElement[0];
         if (!result || !result.result || !result.result.detailedDescription) return Promise.reject('NO RESULT');
         result = result.result;
