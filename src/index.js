@@ -35,3 +35,5 @@ process.on('unhandledRejection', (reason, promise) => {
   client.raven.captureException(reason, { extra: { promise } });
   client.error(promise, reason);
 });
+
+require('./util/checkEventLoop');

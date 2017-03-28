@@ -1,4 +1,4 @@
-const Sherlock = require('sherlockjs');
+const Sherlock = require('Sherlock');
 const moment = require('moment');
 
 module.exports = {
