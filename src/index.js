@@ -6,6 +6,7 @@ const frontend = new Frontend(client);
 
 const updateCount = require('./util/updateCount');
 
+client.on('debug', console.log);
 client.on('error', client.error.bind(null, '[CLIENT ERROR]'));
 client.ws.on('close', (event, shardID) => client.error('[WS CLOSE]', event.code, shardID));
 
